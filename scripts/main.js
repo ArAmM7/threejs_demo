@@ -5,7 +5,7 @@ let renderer, scene, camera, controls, geometry, material, torus, pointLight, am
 
 function init() {
 
-    renderer = new THREE.WebGLRenderer( { antialias:true, canvas: document.querySelector('#bg' ) } );
+    renderer = new THREE.WebGLRenderer( { antialias:true, canvas: document.querySelector('#cv' ) } );
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.setPixelRatio( window.devicePixelRatio );
     document.body.appendChild( renderer.domElement );
@@ -71,5 +71,11 @@ function animate(){
     requestAnimationFrame(animate);
 }
 
+window.addEventListener( 'resize', () => {
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+});
 
 init();
